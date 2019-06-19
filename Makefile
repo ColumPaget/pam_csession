@@ -15,14 +15,14 @@ FLAGS=$(CFLAGS) -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\
 all: pam_csession.so
 
 pam_csession.so: common.h utility.o pam_module.c 
-	gcc $(FLAGS) -c pam_module.c
+	$(CC) $(FLAGS) -c pam_module.c
 	ld -x --shared -lpam -opam_csession.so pam_module.o utility.o 
-	strip pam_csession.so
+	-strip pam_csession.so
 
 utility.o: utility.h utility.c
-	gcc $(FLAGS) -c utility.c
+	$(CC) $(FLAGS) -c utility.c
 
-install: pam_csession.so 
+install: pam_csession.so
 	$(INSTALL) -d $(DESTDIR)$(bindir)
 	$(INSTALL) -d $(DESTDIR)$(libdir)/security
 	$(INSTALL) -d $(DESTDIR)$(mandir)/man8
