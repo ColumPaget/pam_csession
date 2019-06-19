@@ -15,7 +15,7 @@ FLAGS=$(CFLAGS) @DEFS@
 all: pam_csession.so
 
 pam_csession.so: common.h utility.o pam_module.c 
-	$(CC) $(FLAGS) -opam_cession.so -shared -lpam pam_module.c $(OBJ)
+	$(CC) $(FLAGS) -opam_cession.so -shared -lpam pam_module.c utility.o
 	-strip pam_cession.so
 
 utility.o: utility.h utility.c
